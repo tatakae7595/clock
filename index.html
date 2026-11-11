@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digital Clock</title>
+
+    <style>
+        body {
+            background: #111827;
+            color: white;
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .clock {
+            background: #1f2937;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 20px #000;
+        }
+
+        h1 {
+            color: #38bdf8;
+        }
+
+        #time {
+            font-size: 45px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        #date {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 18px;
+            background: #38bdf8;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="clock">
+        <h1>Digital Clock</h1>
+
+        <div id="time">00:00:00</div>
+        <div id="date"></div>
+
+        <button onclick="changeFormat()">12 / 24 Hour</button>
+    </div>
+
+    <script>
+
+        let is24Hour = true;
+
+        function updateClock() {
+
+            let now = new Date();
+
+            let options = {
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: !is24Hour
+            };
+
+            document.getElementById("time").innerText =
+                now.toLocaleTimeString("en-US", options);
+
+            document.getElementById("date").innerText =
+                now.toDateString();
+        }
+
+        function changeFormat() {
+            is24Hour = !is24Hour;
+            updateClock();
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+
+    </script>
+
+</body>
+</html>
